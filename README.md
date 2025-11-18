@@ -1,4 +1,4 @@
-📘 TASKOPTIMIZER AI – DOCUMENTAÇÃO COMPLETA (VERSÃO FINAL UNIFICADA)
+📘 TASKOPTIMIZER AI – DOCUMENTAÇÃO COMPLETA
 Sistema Inteligente de Otimização, Agendamento e Análise de Tarefas
 
 Autor: Yuri Fernandes
