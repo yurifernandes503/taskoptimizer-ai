@@ -1,0 +1,272 @@
+import type { Task } from './types'
+
+
+export const SAMPLE_CATEGORIES = {
+  development: {
+    name: 'Projeto de Desenvolvimento Web',
+    description: 'Tarefas para criar uma aplicação web completa',
+    tasks: [
+      {
+        title: 'Estudar React e Next.js',
+        description: 'Aprender os fundamentos de React e Next.js através de tutoriais e documentação oficial',
+        duration: 120,
+        priority: 4,
+        deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Configurar ambiente de desenvolvimento',
+        description: 'Instalar Node.js, VS Code e extensões necessárias para desenvolvimento web',
+        duration: 45,
+        priority: 5,
+        deadline: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Desenvolver página inicial',
+        description: 'Criar layout responsivo para a página inicial do projeto usando Tailwind CSS',
+        duration: 180,
+        priority: 3,
+        deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Implementar sistema de autenticação',
+        description: 'Criar login, registro e gerenciamento de sessões de usuários',
+        duration: 240,
+        priority: 4,
+        deadline: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Integrar com API REST',
+        description: 'Conectar aplicação com backend através de chamadas HTTP e gerenciar estados',
+        duration: 150,
+        priority: 3,
+        deadline: new Date(Date.now() + 12 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Escrever testes unitários',
+        description: 'Criar testes para componentes principais usando Jest e Testing Library',
+        duration: 180,
+        priority: 2,
+        deadline: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Otimizar performance',
+        description: 'Analisar e melhorar tempo de carregamento, code splitting e lazy loading',
+        duration: 120,
+        priority: 3,
+        deadline: new Date(Date.now() + 18 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Preparar documentação',
+        description: 'Escrever README, guias de instalação e documentação de API',
+        duration: 90,
+        priority: 2,
+        deadline: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Configurar CI/CD',
+        description: 'Implementar pipeline de deploy automático com GitHub Actions e Vercel',
+        duration: 120,
+        priority: 3,
+        deadline: new Date(Date.now() + 16 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Adicionar animações',
+        description: 'Implementar transições suaves e animações com Framer Motion',
+        duration: 90,
+        priority: 1,
+        deadline: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000),
+      },
+    ],
+    dependencies: [
+      { task: 'Desenvolver página inicial', dependsOn: 'Configurar ambiente de desenvolvimento' },
+      { task: 'Implementar sistema de autenticação', dependsOn: 'Configurar ambiente de desenvolvimento' },
+      { task: 'Desenvolver página inicial', dependsOn: 'Estudar React e Next.js' },
+      { task: 'Integrar com API REST', dependsOn: 'Implementar sistema de autenticação' },
+      { task: 'Escrever testes unitários', dependsOn: 'Desenvolver página inicial' },
+      { task: 'Otimizar performance', dependsOn: 'Integrar com API REST' },
+      { task: 'Preparar documentação', dependsOn: 'Otimizar performance' },
+      { task: 'Configurar CI/CD', dependsOn: 'Escrever testes unitários' },
+      { task: 'Adicionar animações', dependsOn: 'Desenvolver página inicial' },
+    ]
+  },
+  
+  academic: {
+    name: 'Projeto Acadêmico',
+    description: 'Tarefas para um trabalho de conclusão de curso',
+    tasks: [
+      {
+        title: 'Definir tema da pesquisa',
+        description: 'Escolher e delimitar o tema do trabalho acadêmico com orientador',
+        duration: 60,
+        priority: 5,
+        deadline: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Revisar literatura',
+        description: 'Ler artigos científicos e livros relacionados ao tema escolhido',
+        duration: 300,
+        priority: 4,
+        deadline: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Elaborar metodologia',
+        description: 'Definir métodos e técnicas que serão utilizados na pesquisa',
+        duration: 120,
+        priority: 4,
+        deadline: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Coletar dados',
+        description: 'Realizar experimentos, questionários ou coleta de dados necessários',
+        duration: 240,
+        priority: 3,
+        deadline: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Analisar resultados',
+        description: 'Processar e interpretar os dados coletados usando ferramentas estatísticas',
+        duration: 180,
+        priority: 3,
+        deadline: new Date(Date.now() + 42 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Escrever introdução',
+        description: 'Redigir a introdução do trabalho apresentando contexto e objetivos',
+        duration: 150,
+        priority: 2,
+        deadline: new Date(Date.now() + 49 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Escrever desenvolvimento',
+        description: 'Redigir os capítulos principais com teoria, metodologia e resultados',
+        duration: 360,
+        priority: 4,
+        deadline: new Date(Date.now() + 56 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Escrever conclusão',
+        description: 'Finalizar trabalho com discussão de resultados e considerações finais',
+        duration: 120,
+        priority: 3,
+        deadline: new Date(Date.now() + 63 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Revisar e formatar',
+        description: 'Revisar texto completo e formatar conforme normas ABNT',
+        duration: 180,
+        priority: 4,
+        deadline: new Date(Date.now() + 70 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Preparar apresentação',
+        description: 'Criar slides e ensaiar apresentação para banca avaliadora',
+        duration: 120,
+        priority: 5,
+        deadline: new Date(Date.now() + 77 * 24 * 60 * 60 * 1000),
+      },
+    ],
+    dependencies: [
+      { task: 'Revisar literatura', dependsOn: 'Definir tema da pesquisa' },
+      { task: 'Elaborar metodologia', dependsOn: 'Revisar literatura' },
+      { task: 'Coletar dados', dependsOn: 'Elaborar metodologia' },
+      { task: 'Analisar resultados', dependsOn: 'Coletar dados' },
+      { task: 'Escrever introdução', dependsOn: 'Definir tema da pesquisa' },
+      { task: 'Escrever desenvolvimento', dependsOn: 'Analisar resultados' },
+      { task: 'Escrever conclusão', dependsOn: 'Escrever desenvolvimento' },
+      { task: 'Revisar e formatar', dependsOn: 'Escrever conclusão' },
+      { task: 'Preparar apresentação', dependsOn: 'Revisar e formatar' },
+    ]
+  },
+
+  event: {
+    name: 'Organização de Evento',
+    description: 'Tarefas para planejar e executar um evento corporativo',
+    tasks: [
+      {
+        title: 'Definir orçamento',
+        description: 'Estabelecer limite de gastos e alocar recursos para cada área do evento',
+        duration: 90,
+        priority: 5,
+        deadline: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Escolher local',
+        description: 'Visitar e contratar espaço adequado para realização do evento',
+        duration: 180,
+        priority: 5,
+        deadline: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Contratar fornecedores',
+        description: 'Selecionar e fechar contratos com buffet, decoração e equipamentos',
+        duration: 240,
+        priority: 4,
+        deadline: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Criar lista de convidados',
+        description: 'Compilar lista completa de participantes e confirmar presença',
+        duration: 120,
+        priority: 3,
+        deadline: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Enviar convites',
+        description: 'Produzir e distribuir convites físicos ou digitais aos convidados',
+        duration: 150,
+        priority: 3,
+        deadline: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Planejar programação',
+        description: 'Definir cronograma de atividades, palestras e entretenimento',
+        duration: 180,
+        priority: 4,
+        deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Contratar equipe de apoio',
+        description: 'Recrutar recepcionistas, seguranças e equipe técnica',
+        duration: 120,
+        priority: 3,
+        deadline: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Preparar material de divulgação',
+        description: 'Criar banners, folders e conteúdo para redes sociais',
+        duration: 150,
+        priority: 2,
+        deadline: new Date(Date.now() + 40 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Realizar ensaio geral',
+        description: 'Testar todos os equipamentos e ensaiar programação completa',
+        duration: 240,
+        priority: 4,
+        deadline: new Date(Date.now() + 55 * 24 * 60 * 60 * 1000),
+      },
+      {
+        title: 'Executar evento',
+        description: 'Coordenar equipe e garantir que tudo ocorra conforme planejado',
+        duration: 480,
+        priority: 5,
+        deadline: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+      },
+    ],
+    dependencies: [
+      { task: 'Escolher local', dependsOn: 'Definir orçamento' },
+      { task: 'Contratar fornecedores', dependsOn: 'Escolher local' },
+      { task: 'Enviar convites', dependsOn: 'Criar lista de convidados' },
+      { task: 'Planejar programação', dependsOn: 'Escolher local' },
+      { task: 'Contratar equipe de apoio', dependsOn: 'Planejar programação' },
+      { task: 'Preparar material de divulgação', dependsOn: 'Planejar programação' },
+      { task: 'Realizar ensaio geral', dependsOn: 'Contratar fornecedores' },
+      { task: 'Realizar ensaio geral', dependsOn: 'Contratar equipe de apoio' },
+      { task: 'Executar evento', dependsOn: 'Realizar ensaio geral' },
+    ]
+  },
+}
+
+// Mantém compatibilidade com código existente
+export const SAMPLE_TASKS = SAMPLE_CATEGORIES.development.tasks
+export const SAMPLE_DEPENDENCIES = SAMPLE_CATEGORIES.development.dependencies
