@@ -1,0 +1,25 @@
+# TaskOptimizer AI - Instruções de Instalação e Execução
+
+## Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado em seu computador:
+
+1. Node.js (versão 18 ou superior)
+   - Baixe em: https://nodejs.org/
+   - Verifique a instalação: execute `node --version` no terminal
+
+2. npm (geralmente vem com o Node.js)
+   - Verifique a instalação: execute `npm --version` no terminal
+
+## Passo a Passo para Instalação
+
+### 1. Extrair o Projeto
+
+Extraia o arquivo ZIP baixado do v0 para uma pasta de sua preferência.
+
+### 2. Abrir o Terminal
+
+- Windows: Abra o Prompt de Comando ou PowerShell
+- Mac/Linux: Abra o Terminal
+
+Navegue até a pasta do projeto usando o comando:
